@@ -1,0 +1,10 @@
+---
+${environment_target}:
+  hosts:
+%{~ for index, hostname in hostnames }
+    ${hostname}:
+      ansible_host: ${ansible_hosts[index]~}
+%{ endfor }
+bind:
+  children:
+    ${environment_target}:
